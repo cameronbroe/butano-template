@@ -31,7 +31,7 @@ jobs:
           name: gba-rom
           path: ${{ github.workspace }}/$target_name.gba
 
-      - name: Release
+      - name: Release built ROM
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
