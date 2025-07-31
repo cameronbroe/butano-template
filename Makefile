@@ -80,4 +80,6 @@ docker-build:
 	@docker cp $(CONTAINER_ID):/gba-build/$(TARGET).gba ./$(TARGET).gba
 	@docker container rm $(CONTAINER_ID)
 	
-	
+.PHONY: output-target
+output-target:
+	@echo $(TARGET)

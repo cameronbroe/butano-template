@@ -1,0 +1,39 @@
+name: Build GBA ROM
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*.*.*"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Get target name
+        run: |
+          echo "target_name=$(make output-target)" >> "$GITHUB_ENV"
+
+      - name: Build ROM using Docker
+        run: make docker-build
+
+      - name: Upload built ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: gba-rom
+          path: ${{ github.workspace }}/$target_name.gba
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          files: ${{ github.workspace }}/$target_name.gba
+
