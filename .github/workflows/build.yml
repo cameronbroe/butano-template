@@ -19,8 +19,9 @@ jobs:
           submodules: 'recursive'
 
       - name: Get target name
+        id: target
         run: |
-          echo "target_name=$(make output-target)" >> "$GITHUB_ENV"
+          echo "name=$(make output-target)" >> "$GITHUB_OUTPUT"
 
       - name: Build ROM using Docker
         run: make docker-build
@@ -29,11 +30,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gba-rom
-          path: ${{ github.workspace }}/$target_name.gba
+          path: ${{ github.workspace }}/${{ steps.target.outputs.name }}.gba
 
       - name: Release built ROM
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
-          files: ${{ github.workspace }}/$target_name.gba
+          files: ${{ github.workspace }}/${{ steps.target.outputs.name }}.gba
 
