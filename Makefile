@@ -31,7 +31,7 @@
 #
 # All directories are specified relative to the project directory where the makefile is found.
 #---------------------------------------------------------------------------------------------------------------------
-TARGET      	:=  $(notdir $(CURDIR))
+TARGET      	:=  butano-template
 BUILD       	:=  build
 LIBBUTANO   	:=  ./butano/butano
 PYTHON      	:=  python
@@ -68,3 +68,16 @@ endif
 # Include main makefile:
 #---------------------------------------------------------------------------------------------------------------------
 include $(LIBBUTANOABS)/butano.mak
+
+START_CONTAINER = $(shell docker run -d gba-rom-builder)
+SET_CONTAINER_ID = $(eval CONTAINER_ID=$(START_CONTAINER))
+
+# Custom targets
+.PHONY: docker-build
+docker-build:
+	@docker build -t gba-rom-builder .
+	$(SET_CONTAINER_ID)
+	@docker cp $(CONTAINER_ID):/gba-build/$(TARGET).gba ./$(TARGET).gba
+	@docker container rm $(CONTAINER_ID)
+	
+	
