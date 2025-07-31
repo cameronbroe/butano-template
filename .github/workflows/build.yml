@@ -23,7 +23,7 @@ jobs:
           echo "target_name=$(make output-target)" >> "$GITHUB_ENV"
 
       - name: Build ROM using Docker
-        run: make DOCKER_ONLY_BUILD=1 docker-build
+        run: make docker-build
 
       - name: Upload built ROM
         uses: actions/upload-artifact@v4
