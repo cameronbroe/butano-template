@@ -67,7 +67,9 @@ endif
 #---------------------------------------------------------------------------------------------------------------------
 # Include main makefile:
 #---------------------------------------------------------------------------------------------------------------------
-include $(LIBBUTANOABS)/butano.mak
+ifndef DOCKER_ONLY_BUILD
+	include $(LIBBUTANOABS)/butano.mak
+endif
 
 START_CONTAINER = $(shell docker run -d gba-rom-builder)
 SET_CONTAINER_ID = $(eval CONTAINER_ID=$(START_CONTAINER))
