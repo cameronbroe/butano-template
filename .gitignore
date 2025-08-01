@@ -1,4 +1,11 @@
+# butano artifacts
 build/
 *.gba
 *.elf
 *.sav
+
+# clangd artifacts
+.cache
+
+# editor artifacts
+.vscode

@@ -1,0 +1,6 @@
+CompileFlags:
+  BuiltinHeaders: QueryDriver
+  Compiler: /opt/devkitpro/devkitARM/bin/arm-none-eabi-g++
+  Remove:
+   - "-mthumb-interwork"
+
