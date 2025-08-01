@@ -1,11 +1,9 @@
 #include "bn_core.h"
 
-int main()
-{
+int main() {
     bn::core::init();
 
-    while(true)
-    {
+    while (true) {
         bn::core::update();
     }
 }
