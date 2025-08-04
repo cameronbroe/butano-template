@@ -1,5 +1,4 @@
 #include "bn_core.h"
-#include "bn_display.h"
 #include "bn_sprite_ptr.h"
 #include "bn_sprite_text_generator.h"
 #include "common_fixed_8x16_sprite_font.h"
