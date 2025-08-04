@@ -36,26 +36,26 @@ BUILD       	:=  build
 LIBBUTANO   	:=  ./butano/butano
 PYTHON      	:=  python
 SOURCES     	:=  src
-INCLUDES    	:=  include
+INCLUDES    	:=  include butano/common/include
 DATA        	:=
-GRAPHICS    	:=  graphics
+GRAPHICS    	:=  graphics butano/common/graphics
 AUDIO       	:=  audio
 AUDIOBACKEND	:=  maxmod
-AUDIOTOOL		:=  
+AUDIOTOOL		:=
 DMGAUDIO    	:=  dmg_audio
 DMGAUDIOBACKEND	:=  default
 ROMTITLE    	:=  ROM TITLE
 ROMCODE     	:=  SBTP
-USERFLAGS   	:=  
-USERCXXFLAGS	:=  
-USERASFLAGS 	:=  
-USERLDFLAGS 	:=  
-USERLIBDIRS 	:=  
-USERLIBS    	:=  
-DEFAULTLIBS 	:=  
-STACKTRACE		:=	
-USERBUILD   	:=  
-EXTTOOL     	:=  
+USERFLAGS   	:=
+USERCXXFLAGS	:=
+USERASFLAGS 	:=
+USERLDFLAGS 	:=
+USERLIBDIRS 	:=
+USERLIBS    	:=
+DEFAULTLIBS 	:=
+STACKTRACE		:=
+USERBUILD   	:=
+EXTTOOL     	:=
 
 #---------------------------------------------------------------------------------------------------------------------
 # Export absolute butano path:
@@ -78,7 +78,7 @@ docker-build:
 	@docker run --name gba-rom-build gba-rom-builder
 	@docker cp gba-rom-build:/gba-build/$(TARGET).gba ./$(TARGET).gba
 	@docker container rm gba-rom-build
-	
+
 .PHONY: output-target
 output-target:
 	@echo $(TARGET)
